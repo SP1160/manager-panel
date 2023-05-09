@@ -34,7 +34,10 @@ body {
 main {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.title {
+  margin-top: 20%;
 }
 
 ::selection {
@@ -279,15 +282,17 @@ body.dark .switch::before {
 /* ===== Table ===== */
 
 table {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
+  margin-top: 100px;
+  margin-left: 220px;
   border-collapse: collapse;
   border-spacing: 0;
   border-radius: 12px;
   overflow: hidden;
+  display: none;
+}
+
+.active-table {
+  display: block;
 }
 
 td,
@@ -314,7 +319,6 @@ th {
 
 tr {
   font-family: 'Montserrat', sans-serif;
-  width: 100%;
 }
 
 .tr--light {
