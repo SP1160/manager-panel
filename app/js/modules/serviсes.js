@@ -42,4 +42,35 @@ async function getAndShowInfo(sectionName) {
   return request
 }
 
-export default getAndShowInfo
+function createNewJobTitle(formID, sectionName) {
+  const form = document.querySelector(formID)
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault()
+
+    const newJobTitleName = form.newJobTitleName.value.trim()
+
+    const maxId = await axios
+      .get(`http://localhost:3000/${sectionName}`)
+      .then(response => {
+        const data = response.data
+        return data.length
+      })
+      .catch(error => console.error(error))
+
+    const newInfo = {
+      id: maxId + 1,
+      jobTitle: newJobTitleName,
+    }
+
+    await axios
+      .post(`http://localhost:3000/${sectionName}`, newInfo)
+      .then(() => {
+        alert('Info added successfully!')
+        form.reset()
+      })
+      .catch(error => console.error(error))
+  })
+}
+
+export { getAndShowInfo, createNewJobTitle }

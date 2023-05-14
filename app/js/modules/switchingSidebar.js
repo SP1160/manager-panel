@@ -1,11 +1,9 @@
 'use strict'
 
-function openSidebarAndHiddenTitle(sidebarSelector, titleSelector) {
-  const title = document.querySelector(titleSelector)
+function openSidebar(sidebarSelector) {
   const sidebar = document.querySelector(sidebarSelector)
 
   sidebar.classList.remove('close')
-  title.style.display = 'none'
   localStorage.setItem('isSidebarClosed', false)
 }
 
@@ -20,4 +18,4 @@ function toggleSidebar(sidebarSelector, toggleSelector) {
   })
 }
 
-export { openSidebarAndHiddenTitle, toggleSidebar }
+export { openSidebar, toggleSidebar }

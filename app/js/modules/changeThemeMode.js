@@ -5,15 +5,18 @@ function changeToDarkMode(
   modeTextSelector,
   tableRowsSelector,
   tableHeadsSelector,
-  titleSelector
+  formSelector
 ) {
   const body = document.querySelector(bodySelector)
   const modeText = body.querySelector(modeTextSelector)
   const tableRows = body.querySelectorAll(tableRowsSelector)
   const tableHeads = body.querySelectorAll(tableHeadsSelector)
-  const title = body.querySelector(titleSelector)
+  const forms = body.querySelectorAll(formSelector)
 
   body.classList.add('dark')
+  forms.forEach(form => {
+    form.classList.add('form--dark')
+  })
 
   modeText.innerText = 'Light mode'
   tableRows.forEach(row => {
@@ -25,8 +28,6 @@ function changeToDarkMode(
     head.classList.remove('th--light')
     head.classList.add('th--dark')
   })
-
-  title.style.color = '#fff'
 }
 
 function changeToLightMode(
@@ -34,15 +35,18 @@ function changeToLightMode(
   modeTextSelector,
   tableRowsSelector,
   tableHeadsSelector,
-  titleSelector
+  formSelector
 ) {
   const body = document.querySelector(bodySelector)
   const modeText = body.querySelector(modeTextSelector)
   const tableRows = body.querySelectorAll(tableRowsSelector)
   const tableHeads = body.querySelectorAll(tableHeadsSelector)
-  const title = body.querySelector(titleSelector)
+  const forms = body.querySelectorAll(formSelector)
 
   body.classList.remove('dark')
+  forms.forEach(form => {
+    form.classList.remove('form--dark')
+  })
 
   modeText.innerText = 'Dark mode'
 
@@ -55,8 +59,6 @@ function changeToLightMode(
     head.classList.remove('th--dark')
     head.classList.add('th--light')
   })
-
-  title.style.color = '#000'
 }
 
 function switchMode(
@@ -65,7 +67,7 @@ function switchMode(
   modeTextSelector,
   tableRowsSelector,
   tableHeadsSelector,
-  titleSelector
+  formSelector
 ) {
   const body = document.querySelector(bodySelector)
   const modeSwitch = body.querySelector(modeSwitchSelector)
@@ -81,7 +83,7 @@ function switchMode(
         modeTextSelector,
         tableRowsSelector,
         tableHeadsSelector,
-        titleSelector
+        formSelector
       )
     } else {
       changeToLightMode(
@@ -89,7 +91,7 @@ function switchMode(
         modeTextSelector,
         tableRowsSelector,
         tableHeadsSelector,
-        titleSelector
+        formSelector
       )
     }
   })

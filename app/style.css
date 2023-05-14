@@ -36,10 +36,6 @@ main {
   justify-content: center;
 }
 
-.title {
-  margin-top: 20%;
-}
-
 ::selection {
   background-color: var(--primary-color);
   color: #fff;
@@ -332,4 +328,32 @@ tr {
 
 .options-icon {
   cursor: pointer;
+}
+
+/* ===== Forms ===== */
+
+.form__content {
+  font-size: 20px;
+  margin-top: 200px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px 0;
+  display: none;
+}
+
+.form__content button {
+  cursor: pointer;
+  min-width: 300px;
+  min-height: 45px;
+  border: 1px solid #000;
+  border-radius: 12px;
+}
+
+.active-form {
+  display: flex;
+}
+
+.form--dark {
+  color: #fff;
 }

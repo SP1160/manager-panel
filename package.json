@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SP1160/manager-panel-php.git"
+    "url": "git+https://github.com/SP1160/manager-panel.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SP1160/manager-panel-php/issues"
+    "url": "https://github.com/SP1160/manager-panel/issues"
   },
-  "homepage": "https://github.com/SP1160/manager-panel-php#readme",
+  "homepage": "https://github.com/SP1160/manager-panel#readme",
   "devDependencies": {
     "json-server": "^0.17.3"
   }

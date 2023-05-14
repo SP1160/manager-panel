@@ -88,80 +88,134 @@
 
   <main>
 
-    <h2 class="title">Сlick on the icon to display the table you want</h2>
+    <div>
+      <table id="job" class="active-table">
+        <thead class="th--light">
+          <tr>
+            <th>ID</th>
+            <th>Job Title</th>
+            <th>Create</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tr--light"></tbody>
+      </table>
 
-    <table id="job">
-      <thead>
-        <tr class="tr--light">
-          <th class="th--light">ID</th>
-          <th class="th--light">Job Title</th>
-          <th class="th--light">Create</th>
-          <th class="th--light">Edit</th>
-          <th class="th--light">Delete</th>
-        </tr>
-      </thead>
-      <tbody class="tr--light"></tbody>
-    </table>
+        <form class="form__content" id="create-job">
+          <h2>Create new job title</h2>
+          <div class="form__item">
+            <label>Job Title:</label>
+            <input type="text" name="newJobTitleName" placeholder="Enter job title" size="25" required>
+          </div>
+          <button type="reset">Reset</button>
+          <button id="btn-back-create-job">Back</button>
+          <button type="submit">Submit</button>
+        </form>
 
-    <table id="employee">
-      <thead>
-        <tr class="tr--light">
-          <th class="th--light">ID</th>
-          <th class="th--light">FIO</th>
-          <th class="th--light">Job Title</th>
-          <th class="th--light">Create</th>
-          <th class="th--light">Edit</th>
-          <th class="th--light">Delete</th>
-        </tr>
-      </thead>
-      <tbody class="tr--light"></tbody>
-    </table>
+        <form class="form__content" id="edit-job">
+          <h2>Edit job title</h2>
+          <div class="form__item">
+            <label>Job Title:</label>
+            <input type="text" name="updatedJobTitleName" size="25" required>
+          </div>
+          <button type="reset">Reset</button>
+          <button id="btn-back-edit-job">Back</button>
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div>
+      <table id="employee">
+        <thead class="th--light">
+          <tr>
+            <th>ID</th>
+            <th>FIO</th>
+            <th>Job Title</th>
+            <th>Create</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tr--light"></tbody>
+      </table>
+
+      <form class="form__content" id="create-employee">
+        <h2>Create new employee</h2>
+        <div class="form__item">
+          <label>Job Title:</label>
+          <input type="text" name="newJobTitleName" placeholder="Enter job title" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>FIO:</label>
+          <input type="text" name="newFioName" placeholder="Enter job title" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-create-employee">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+
+      <form class="form__content" id="edit-employee">
+        <h2>Edit job title</h2>
+        <div class="form__item">
+          <label>Job Title:</label>
+          <input type="text" name="newJobTitleName" placeholder="Enter job title" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>FIO:</label>
+          <input type="text" name="newFioName" placeholder="Enter job title" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-edit-employee">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 
     <table id="car">
-      <thead>
-        <tr class="tr--light">
-          <th class="th--light">ID</th>
-          <th class="th--light">Car Brand</th>
-          <th class="th--light">Car Number</th>
-          <th class="th--light">Price Per Day (₽)</th>
-          <th class="th--light">Create</th>
-          <th class="th--light">Edit</th>
-          <th class="th--light">Delete</th>
+      <thead class="th--light">
+        <tr>
+          <th>ID</th>
+          <th>Car Brand</th>
+          <th>Car Number</th>
+          <th>Price Per Day (₽)</th>
+          <th>Create</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody class="tr--light"></tbody>
     </table>
 
     <table id="client">
-      <thead>
-        <tr class="tr--light">
-          <th class="th--light">ID</th>
-          <th class="th--light">FIO</th>
-          <th class="th--light">Telephone</th>
-          <th class="th--light">Create</th>
-          <th class="th--light">Edit</th>
-          <th class="th--light">Delete</th>
+      <thead class="th--light">
+        <tr>
+          <th>ID</th>
+          <th>FIO</th>
+          <th>Telephone</th>
+          <th>Create</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody class="tr--light"></tbody>
     </table>
 
     <table id="contract">
-      <thead>
-        <tr class="tr--light">
-          <th class="th--light">ID</th>
-          <th class="th--light">No.</th>
-          <th class="th--light">Date</th>
-          <th class="th--light">Return Date</th>
-          <th class="th--light">Pledge (₽)</th>
-          <th class="th--light">Employee</th>
-          <th class="th--light">Client</th>
-          <th class="th--light">Car</th>
-          <th class="th--light">Car Number</th>
-          <th class="th--light">Show</th>
-          <th class="th--light">Create</th>
-          <th class="th--light">Edit</th>
-          <th class="th--light">Delete</th>
+      <thead class="th--light">
+        <tr>
+          <th>ID</th>
+          <th>No.</th>
+          <th>Date</th>
+          <th>Return Date</th>
+          <th>Pledge (₽)</th>
+          <th>Employee</th>
+          <th>Client</th>
+          <th>Car</th>
+          <th>Car Number</th>
+          <th>Show</th>
+          <th>Create</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody class="tr--light"></tbody>
