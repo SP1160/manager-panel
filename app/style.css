@@ -330,10 +330,6 @@ tr {
   color: #fff;
 }
 
-.tr--light:nth-child(even) {
-  background-color: #eeeeee;
-}
-
-.tr--dark:nth-child(even) {
-  background-color: #7e7878;
+.options-icon {
+  cursor: pointer;
 }
