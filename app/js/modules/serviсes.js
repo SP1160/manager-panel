@@ -1,5 +1,7 @@
 'use strict'
 
+import { openForm } from './addForm.js'
+
 const render = (tableId, info) => {
   const tableBody = document.querySelector(tableId + ' tbody')
   info.forEach(obj => {
@@ -43,6 +45,8 @@ async function getAndShowInfo(sectionName) {
 }
 
 function createNewJobTitle(formID, sectionName) {
+  openForm('#job', '#create-job', '#btn-back-create-job', 'fa-square-plus')
+
   const form = document.querySelector(formID)
 
   form.addEventListener('submit', async event => {
@@ -73,4 +77,46 @@ function createNewJobTitle(formID, sectionName) {
   })
 }
 
-export { getAndShowInfo, createNewJobTitle }
+async function editJobTitle(formID, sectionName) {
+  openForm('#job', '#edit-job', '#btn-back-edit-job', 'fa-pen-to-square')
+
+  const form = document.querySelector(formID)
+  const formInput = form.updatedJobTitleName
+
+  try {
+    const response = await axios.get(`http://localhost:3000/${sectionName}`)
+    const data = response.data
+    formInput.value = data[0].jobTitle
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault() // Prevent the default form submission
+
+      const newJobTitle = formInput.value.trim()
+
+      if (newJobTitle === data[0].jobTitle) {
+        alert('Job title not changed. Form not submitted.')
+        return
+      }
+
+      const updatedData = {
+        id: data[0].id,
+        jobTitle: newJobTitle,
+      }
+
+      try {
+        const updateResponse = await axios.put(
+          `http://localhost:3000/${sectionName}/${data[0].id}`,
+          updatedData
+        )
+
+        alert('Job title updated successfully:', updateResponse.data)
+      } catch (error) {
+        console.error('Error updating job title:', error)
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { getAndShowInfo, createNewJobTitle, editJobTitle }
