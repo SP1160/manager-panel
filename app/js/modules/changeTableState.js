@@ -50,4 +50,4 @@ function openActiveTable(iconsSelector) {
   })
 }
 
-export default openActiveTable
+export { openActiveTable }

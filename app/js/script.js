@@ -1,7 +1,7 @@
 import { getAndShowInfo, createNewJobTitle, editJobTitle } from "./modules/serviсes.js"
 import { changeToDarkMode, changeToLightMode, switchMode } from "./modules/changeThemeMode.js"
 import { toggleSidebar } from "./modules/switchingSidebar.js"
-import openActiveTable from "./modules/changeTableState.js"
+import { openActiveTable } from "./modules/changeTableState.js"
 
 window.addEventListener('DOMContentLoaded', () => {
   let isSidebarClosed = localStorage.getItem('isSidebarClosed') === 'true'
