@@ -6,42 +6,93 @@ function openCreateForm(tableID, formID, btnBackID) {
   const btnBack = document.querySelector(btnBackID)
   const sidebar = document.querySelector('nav')
 
-  table.addEventListener('click', event => {
-    if (event.target && event.target.classList.contains('fa-square-plus')) {
-      table.classList.remove('active-table')
-      form.classList.add('active-form')
-      sidebar.style.display = 'none'
-    }
-  })
+  if (tableID === '#job')
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-square-plus')) {
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
+      }
+    })
+
+  if (tableID === '#employee') {
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-square-plus')) {
+        const tableRows = document.querySelectorAll('#job tbody tr')
+        tableRows.forEach(row => {
+          const cell = row.querySelector('td:nth-child(2)')
+          const cellValue = cell.textContent
+          form.newJobTitleNames.innerHTML += `
+          <option value="newJobTitleName">${cellValue}</option>
+          `
+        })
+
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
+      }
+    })
+  }
 
   comebackToMainPage(table, form, btnBack, sidebar)
 }
 
 function openEditForm(tableID, formID, btnBackID, callback) {
-  const table = document.querySelector(tableID);
-  const form = document.querySelector(formID);
-  const btnBack = document.querySelector(btnBackID);
-  const sidebar = document.querySelector('nav');
+  const table = document.querySelector(tableID)
+  const form = document.querySelector(formID)
+  const btnBack = document.querySelector(btnBackID)
+  const sidebar = document.querySelector('nav')
 
-  table.addEventListener('click', (event) => {
-    if (event.target && event.target.classList.contains('fa-pen-to-square')) {
-      const dataEditValue = event.target.getAttribute('data-edit');
-      const row = table.querySelector(`tr[data-row="${dataEditValue}"]`);
-      const jobTitle = row.querySelector('td:nth-child(2)').innerText;
+  if (tableID === '#job') {
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const dataEditValue = event.target.getAttribute('data-edit')
+        const row = table.querySelector(`tr[data-row="${dataEditValue}"]`)
+        const jobTitle = row.querySelector('td:nth-child(2)').innerText
 
-      form.querySelector('input[name="updatedJobTitleName"]').value = jobTitle;
+        form.querySelector('input[name="updatedJobTitleName"]').value = jobTitle
 
-      table.classList.remove('active-table');
-      form.classList.add('active-form');
-      sidebar.style.display = 'none';
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
 
-      if (typeof callback === 'function') {
-        callback(dataEditValue);
+        if (typeof callback === 'function') {
+          callback(dataEditValue)
+        }
       }
-    }
-  });
+    })
+  }
 
-  comebackToMainPage(table, form, btnBack, sidebar);
+  if (tableID === '#employee') {
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const dataEditValue = event.target.getAttribute('data-edit')
+        const row = table.querySelector(`tr[data-row="${dataEditValue}"]`)
+        const fio = row.querySelector('td:nth-child(2)').innerText
+
+        const tableRows = document.querySelectorAll('#job tbody tr')
+        tableRows.forEach(row => {
+          const cell = row.querySelector('td:nth-child(2)')
+          const cellValue = cell.textContent
+          form.updatedJobTitleNames.innerHTML += `
+          <option value="updatedJobTitleName">${cellValue}</option>
+          `
+        })
+
+        form.querySelector('input[name="updatedFioName"]').value = fio
+
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
+
+        if (typeof callback === 'function') {
+          callback(dataEditValue)
+        }
+      }
+    })
+  }
+
+  comebackToMainPage(table, form, btnBack, sidebar)
 }
 
 function comebackToMainPage(table, form, btnBack, sidebar) {
@@ -51,6 +102,14 @@ function comebackToMainPage(table, form, btnBack, sidebar) {
     table.classList.add('active-table')
     form.classList.remove('active-form')
     sidebar.style.display = ''
+
+    if (form.newJobTitleNames) {
+      form.newJobTitleNames.innerHTML = ''
+    }
+
+    if (form.updatedJobTitleNames) {
+      form.updatedJobTitleNames.innerHTML = ''
+    }
   })
 }
 
