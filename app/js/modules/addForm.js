@@ -116,6 +116,28 @@ function openEditForm(tableID, formID, btnBackID, callback) {
     })
   }
 
+  if (tableID === '#client') {
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const dataEditValue = event.target.getAttribute('data-edit')
+        const row = table.querySelector(`tr[data-row="${dataEditValue}"]`)
+        const clientFio = row.querySelector('td:nth-child(1)').innerText
+        const clientTelephone = row.querySelector('td:nth-child(2)').innerText
+
+        form.querySelector('input[name="updatedFioClientName"]').value = clientFio
+        form.querySelector('input[name="updatedTelephoneClientName"]').value = clientTelephone
+
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
+
+        if (typeof callback === 'function') {
+          callback(dataEditValue)
+        }
+      }
+    })
+  }
+
   comebackToMainPage(table, form, btnBack, sidebar)
 }
 

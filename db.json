@@ -33,6 +33,12 @@
       "carBrand": "Mazda 6",
       "carNumber": "А123АА",
       "price": "10000"
+    },
+    {
+      "id": 4,
+      "carBrand": "Shelby Cobra",
+      "carNumber": "А111КА",
+      "price": "12000"
     }
   ],
   "client": [

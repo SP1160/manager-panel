@@ -149,7 +149,7 @@
         </div>
         <div class="form__item">
           <label>FIO:</label>
-          <input type="text" name="newFioName" placeholder="Enter job title" size="25" required>
+          <input type="text" name="newFioName" placeholder="Enter employee fio" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-create-employee">Back</button>
@@ -229,19 +229,51 @@
     </div>
 
     <!-- CLIENT -->
-    <table id="client">
-      <thead class="th--light">
-        <tr>
-          <th>#</th>
-          <th>FIO</th>
-          <th>Telephone</th>
-          <th>Create</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody class="tr--light"></tbody>
-    </table>
+    <div>
+      <table id="client">
+        <thead class="th--light">
+          <tr>
+            <th>#</th>
+            <th>FIO</th>
+            <th>Telephone</th>
+            <th>Create</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tr--light"></tbody>
+      </table>
+
+      <form class="form__content" id="create-client">
+        <h2>Create new client</h2>
+        <div class="form__item">
+          <label>FIO:</label>
+          <input type="text" name="newFioClientName" placeholder="Enter client fio" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Telephone:</label>
+          <input type="text" name="newTelephoneClientName" placeholder="Enter client telephone" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-create-client">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+
+      <form class="form__content" id="edit-client">
+        <h2>Edit client</h2>
+        <div class="form__item">
+          <label>FIO:</label>
+          <input type="text" name="updatedFioClientName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Telephone:</label>
+          <input type="text" name="updatedTelephoneClientName" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-edit-client">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 
     <table id="contract">
       <thead class="th--light">

@@ -5,6 +5,7 @@ import { toggleSidebar } from "./modules/switchingSidebar.js"
 import { createNewJobTitle, editJobTitle } from "./modules/services/jobTitleServiсes.js"
 import { createNewEmployee, editEmployee } from "./modules/services/employeeServices.js"
 import { createNewCar, editCar } from "./modules/services/carServices.js"
+import { createNewClient, editClient } from "./modules/services/clientServices.js"
 
 window.addEventListener('DOMContentLoaded', () => {
   let isSidebarClosed = localStorage.getItem('isSidebarClosed') === 'true'
@@ -45,4 +46,8 @@ window.addEventListener('DOMContentLoaded', () => {
   createNewCar('#create-car', 'car')
   editCar('#edit-car', 'car')
   deleteRow('car', 'car')
+
+  createNewClient('#create-client', 'client')
+  editClient('#edit-client', 'client')
+  deleteRow('client', 'client')
 })
