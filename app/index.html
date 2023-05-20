@@ -173,21 +173,62 @@
     </div>
 
     <!-- CAR -->
-    <table id="car">
-      <thead class="th--light">
-        <tr>
-          <th>#</th>
-          <th>Car Brand</th>
-          <th>Car Number</th>
-          <th>Price Per Day (₽)</th>
-          <th>Create</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody class="tr--light"></tbody>
-    </table>
+    <div>
+      <table id="car">
+        <thead class="th--light">
+          <tr>
+            <th>#</th>
+            <th>Car Brand</th>
+            <th>Car Number</th>
+            <th>Price Per Day (₽)</th>
+            <th>Create</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tr--light"></tbody>
+      </table>
 
+      <form class="form__content" id="create-car">
+        <h2>Create new car</h2>
+        <div class="form__item">
+          <label>Car brand:</label>
+          <input type="text" name="newCarBrand" placeholder="Enter car brand" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Car number:</label>
+          <input type="text" name="newCarNumber" placeholder="Enter car number" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Price per day (₽):</label>
+          <input type="number" name="newPricePerDay" placeholder="Enter price per day" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-create-car">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+
+      <form class="form__content" id="edit-car">
+        <h2>Edit car</h2>
+        <div class="form__item">
+          <label>Car brand:</label>
+          <input type="text" name="updatedCarBrand" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Car number:</label>
+          <input type="text" name="updatedCarNumber" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Price per day (₽):</label>
+          <input type="number" name="updatedPricePerDay" size="25" required>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-edit-car">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- CLIENT -->
     <table id="client">
       <thead class="th--light">
         <tr>

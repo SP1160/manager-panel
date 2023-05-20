@@ -1,3 +1,5 @@
+'use strict'
+
 const render = (tableId, info) => {
   const tableBody = document.querySelector(tableId + ' tbody')
   info.forEach((obj, index) => {

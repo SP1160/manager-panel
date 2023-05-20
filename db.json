@@ -27,6 +27,12 @@
       "carBrand": "BMW M3",
       "carNumber": "К888ОТ",
       "price": 15000
+    },
+    {
+      "id": 3,
+      "carBrand": "Mazda 6",
+      "carNumber": "А123АА",
+      "price": "10000"
     }
   ],
   "client": [

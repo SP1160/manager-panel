@@ -6,7 +6,7 @@ function openCreateForm(tableID, formID, btnBackID) {
   const btnBack = document.querySelector(btnBackID)
   const sidebar = document.querySelector('nav')
 
-  if (tableID === '#job')
+  if (tableID === '#job' || tableID === '#car' || tableID === '#client')
     table.addEventListener('click', event => {
       if (event.target && event.target.classList.contains('fa-square-plus')) {
         table.classList.remove('active-table')
@@ -80,6 +80,30 @@ function openEditForm(tableID, formID, btnBackID, callback) {
         })
 
         form.querySelector('input[name="updatedFioName"]').value = fio
+
+        table.classList.remove('active-table')
+        form.classList.add('active-form')
+        sidebar.style.display = 'none'
+
+        if (typeof callback === 'function') {
+          callback(dataEditValue)
+        }
+      }
+    })
+  }
+
+  if (tableID === '#car') {
+    table.addEventListener('click', event => {
+      if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const dataEditValue = event.target.getAttribute('data-edit')
+        const row = table.querySelector(`tr[data-row="${dataEditValue}"]`)
+        const carBrand = row.querySelector('td:nth-child(1)').innerText
+        const carNumber = row.querySelector('td:nth-child(2)').innerText
+        const carPricePerDay = row.querySelector('td:nth-child(3)').innerText
+
+        form.querySelector('input[name="updatedCarBrand"]').value = carBrand
+        form.querySelector('input[name="updatedCarNumber"]').value = carNumber
+        form.querySelector('input[name="updatedPricePerDay"]').value = carPricePerDay
 
         table.classList.remove('active-table')
         form.classList.add('active-form')

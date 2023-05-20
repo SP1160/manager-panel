@@ -1,9 +1,10 @@
 import { getAndShowInfo, deleteRow } from "./modules/services/genetalService.js"
-import { createNewJobTitle, editJobTitle } from "./modules/services/jobTitleServiсes.js"
-import { createNewEmployee, editEmployee } from "./modules/services/employeeServices.js"
+import { openActiveTable } from "./modules/changeTableState.js"
 import { changeToDarkMode, changeToLightMode, switchMode } from "./modules/changeThemeMode.js"
 import { toggleSidebar } from "./modules/switchingSidebar.js"
-import { openActiveTable } from "./modules/changeTableState.js"
+import { createNewJobTitle, editJobTitle } from "./modules/services/jobTitleServiсes.js"
+import { createNewEmployee, editEmployee } from "./modules/services/employeeServices.js"
+import { createNewCar, editCar } from "./modules/services/carServices.js"
 
 window.addEventListener('DOMContentLoaded', () => {
   let isSidebarClosed = localStorage.getItem('isSidebarClosed') === 'true'
@@ -41,6 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
   editEmployee('#edit-employee', 'employee')
   deleteRow('employee', 'employee')
 
-  // openForm('#employee', '#create-employee', '#btn-back-create-employee', 'fa-square-plus')
-  // openForm('#employee', '#edit-employee', '#btn-back-edit-employee', 'fa-pen-to-square')
+  createNewCar('#create-car', 'car')
+  editCar('#edit-car', 'car')
+  deleteRow('car', 'car')
 })
