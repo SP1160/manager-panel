@@ -1,4 +1,6 @@
-import { getAndShowInfo, createNewJobTitle, editJobTitle } from "./modules/serviсes.js"
+import { getAndShowInfo, deleteRow } from "./modules/services/genetalService.js"
+import { createNewJobTitle, editJobTitle } from "./modules/services/jobTitleServiсes.js"
+import { createNewEmployee, editEmployee } from "./modules/services/employeeServices.js"
 import { changeToDarkMode, changeToLightMode, switchMode } from "./modules/changeThemeMode.js"
 import { toggleSidebar } from "./modules/switchingSidebar.js"
 import { openActiveTable } from "./modules/changeTableState.js"
@@ -33,6 +35,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   createNewJobTitle('#create-job', 'job')
   editJobTitle('#edit-job', 'job')
+  deleteRow('job', 'job')
+
+  createNewEmployee('#create-employee', 'employee')
+  editEmployee('#edit-employee', 'employee')
+  deleteRow('employee', 'employee')
 
   // openForm('#employee', '#create-employee', '#btn-back-create-employee', 'fa-square-plus')
   // openForm('#employee', '#edit-employee', '#btn-back-edit-employee', 'fa-pen-to-square')

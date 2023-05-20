@@ -87,12 +87,12 @@
   </nav>
 
   <main>
-
+    <!-- JOB TITLE -->
     <div>
       <table id="job" class="active-table">
         <thead class="th--light">
           <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Job Title</th>
             <th>Create</th>
             <th>Edit</th>
@@ -125,11 +125,12 @@
         </form>
     </div>
 
+    <!-- EMPLOYEE -->
     <div>
       <table id="employee">
         <thead class="th--light">
           <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>FIO</th>
             <th>Job Title</th>
             <th>Create</th>
@@ -144,7 +145,7 @@
         <h2>Create new employee</h2>
         <div class="form__item">
           <label>Job Title:</label>
-          <input type="text" name="newJobTitleName" placeholder="Enter job title" size="25" required>
+          <select name="newJobTitleNames"></select>
         </div>
         <div class="form__item">
           <label>FIO:</label>
@@ -159,11 +160,11 @@
         <h2>Edit job title</h2>
         <div class="form__item">
           <label>Job Title:</label>
-          <input type="text" name="newJobTitleName" placeholder="Enter job title" size="25" required>
+          <select name="updatedJobTitleNames"></select>
         </div>
         <div class="form__item">
           <label>FIO:</label>
-          <input type="text" name="newFioName" placeholder="Enter job title" size="25" required>
+          <input type="text" name="updatedFioName" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-edit-employee">Back</button>
@@ -171,10 +172,11 @@
       </form>
     </div>
 
+    <!-- CAR -->
     <table id="car">
       <thead class="th--light">
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>Car Brand</th>
           <th>Car Number</th>
           <th>Price Per Day (₽)</th>
@@ -189,7 +191,7 @@
     <table id="client">
       <thead class="th--light">
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>FIO</th>
           <th>Telephone</th>
           <th>Create</th>
@@ -203,7 +205,7 @@
     <table id="contract">
       <thead class="th--light">
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>No.</th>
           <th>Date</th>
           <th>Return Date</th>
