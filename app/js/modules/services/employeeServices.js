@@ -33,13 +33,13 @@ function createNewEmployee(formID, sectionName) {
   
       try {
         await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
-        alert('Info added successfully!')
+        console.log('Info added successfully!')
         form.reset()
       } catch (error) {
         console.error(error)
       }
     } catch {
-      alert('Dont have any job titles')
+      console.log('Dont have any job titles')
     }
   })
 }
@@ -68,7 +68,7 @@ async function editEmployee(formID, sectionName) {
           const newJobTitleName = selectOption.textContent
 
           if (newFio === data[parseInt(dataEditValue) - 1].fioEmployee && newJobTitleName === data[parseInt(dataEditValue) - 1].jobTitle) {
-            alert('Info not changed. Form not submitted.')
+            console.log('Info not changed. Form not submitted.')
             return
           }
 
@@ -86,7 +86,7 @@ async function editEmployee(formID, sectionName) {
               updatedData
             )
 
-            alert('Info updated successfully')
+            console.log('Info updated successfully')
           } catch (error) {
             console.error(error)
           }

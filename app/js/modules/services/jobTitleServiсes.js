@@ -28,7 +28,7 @@ function createNewJobTitle(formID, sectionName) {
 
     try {
       await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
-      alert('Info added successfully!')
+      console.log('Info added successfully!')
       form.reset()
     } catch (error) {
       console.error(error)
@@ -57,7 +57,7 @@ async function editJobTitle(formID, sectionName) {
           const newJobTitle = formInput.value.trim()
 
           if (newJobTitle === data[parseInt(dataEditValue) - 1].jobTitle) {
-            alert('Info not changed. Form not submitted.')
+            console.log('Info not changed. Form not submitted.')
             return
           }
 
@@ -74,7 +74,7 @@ async function editJobTitle(formID, sectionName) {
               updatedData
             )
 
-            alert('Info updated successfully')
+            console.log('Info updated successfully')
           } catch (error) {
             console.error(error)
           }
