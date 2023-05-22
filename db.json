@@ -7,18 +7,27 @@
     {
       "id": 10,
       "jobTitle": "Менеджер по продажам"
+    },
+    {
+      "id": 11,
+      "jobTitle": "Директор автопроката"
     }
   ],
   "employee": [
     {
       "id": 1,
-      "fioEmployee": "Иванов Сергей Васильевич",
-      "jobTitle": "Арендодатель автомобилей"
+      "fioEmployee": "888",
+      "jobTitle": "Менеджер по продажам"
     },
     {
       "id": 2,
-      "fioEmployee": "Гальгин Пека Антонович",
-      "jobTitle": "Менеджер по продажам"
+      "fioEmployee": "123",
+      "jobTitle": "Арендодатель автомобилей"
+    },
+    {
+      "id": 4,
+      "fioEmployee": "gthrthrt",
+      "jobTitle": "Арендодатель автомобилей"
     }
   ],
   "car": [
@@ -30,15 +39,9 @@
     },
     {
       "id": 3,
-      "carBrand": "Mazda 6",
-      "carNumber": "А123АА",
-      "price": "10000"
-    },
-    {
-      "id": 4,
-      "carBrand": "Shelby Cobra",
-      "carNumber": "А111КА",
-      "price": "12000"
+      "carBrand": "Gold RS",
+      "carNumber": "О888ОО",
+      "price": 6200
     }
   ],
   "client": [
@@ -51,14 +54,14 @@
   "contract": [
     {
       "id": 1,
-      "number": 1,
       "date": "09.05.2023",
       "returnDate": "10.05.2023",
       "pledge": 5000,
       "fioEmployee": "Петров Иван Сергеевич",
       "fioClient": "Пупкин Петр Александрович",
       "carBrand": "BMW M3",
-      "carNumber": "С065МК"
+      "carNumber": "С065МК",
+      "price": 15000
     }
   ]
 }

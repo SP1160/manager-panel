@@ -88,7 +88,7 @@
 
   <main>
     <!-- JOB TITLE -->
-    <div>
+    <section>
       <table id="job" class="active-table">
         <thead class="th--light">
           <tr>
@@ -123,10 +123,10 @@
           <button id="btn-back-edit-job">Back</button>
           <button type="submit">Submit</button>
         </form>
-    </div>
+    </section>
 
     <!-- EMPLOYEE -->
-    <div>
+    <section>
       <table id="employee">
         <thead class="th--light">
           <tr>
@@ -170,10 +170,10 @@
         <button id="btn-back-edit-employee">Back</button>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </section>
 
     <!-- CAR -->
-    <div>
+    <section>
       <table id="car">
         <thead class="th--light">
           <tr>
@@ -193,15 +193,15 @@
         <h2>Create new car</h2>
         <div class="form__item">
           <label>Car brand:</label>
-          <input type="text" name="newCarBrand" placeholder="Enter car brand" size="25" required>
+          <input type="text" name="newCarBrandName" placeholder="Enter car brand" size="25" required>
         </div>
         <div class="form__item">
           <label>Car number:</label>
-          <input type="text" name="newCarNumber" placeholder="Enter car number" size="25" required>
+          <input type="text" name="newCarNumberName" placeholder="Enter car number" size="25" required>
         </div>
         <div class="form__item">
           <label>Price per day (₽):</label>
-          <input type="number" name="newPricePerDay" placeholder="Enter price per day" size="25" required>
+          <input type="number" name="newPricePerDayName" placeholder="Enter price per day" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-create-car">Back</button>
@@ -212,24 +212,24 @@
         <h2>Edit car</h2>
         <div class="form__item">
           <label>Car brand:</label>
-          <input type="text" name="updatedCarBrand" size="25" required>
+          <input type="text" name="updatedCarBrandName" size="25" required>
         </div>
         <div class="form__item">
           <label>Car number:</label>
-          <input type="text" name="updatedCarNumber" size="25" required>
+          <input type="text" name="updatedCarNumberName" size="25" required>
         </div>
         <div class="form__item">
           <label>Price per day (₽):</label>
-          <input type="number" name="updatedPricePerDay" size="25" required>
+          <input type="number" name="updatedPricePerDayName" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-edit-car">Back</button>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </section>
 
     <!-- CLIENT -->
-    <div>
+    <section>
       <table id="client">
         <thead class="th--light">
           <tr>
@@ -252,7 +252,7 @@
         </div>
         <div class="form__item">
           <label>Telephone:</label>
-          <input type="text" name="newTelephoneClientName" placeholder="Enter client telephone" size="25" required>
+          <input type="tel" name="newTelephoneClientName" placeholder="Enter client telephone" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-create-client">Back</button>
@@ -267,34 +267,99 @@
         </div>
         <div class="form__item">
           <label>Telephone:</label>
-          <input type="text" name="updatedTelephoneClientName" size="25" required>
+          <input type="tel" name="updatedTelephoneClientName" size="25" required>
         </div>
         <button type="reset">Reset</button>
         <button id="btn-back-edit-client">Back</button>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </section>
 
-    <table id="contract">
-      <thead class="th--light">
-        <tr>
-          <th>#</th>
-          <th>No.</th>
-          <th>Date</th>
-          <th>Return Date</th>
-          <th>Pledge (₽)</th>
-          <th>Employee</th>
-          <th>Client</th>
-          <th>Car</th>
-          <th>Car Number</th>
-          <th>Show</th>
-          <th>Create</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody class="tr--light"></tbody>
-    </table>
+    <!-- CONTRACT -->
+    <section>
+      <table id="contract">
+        <thead class="th--light">
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Return Date</th>
+            <th>Pledge (₽)</th>
+            <th>Employee</th>
+            <th>Client</th>
+            <th>Car</th>
+            <th>Car Number</th>
+            <th>Price Per Day (₽)</th>
+            <th>Show</th>
+            <th>Create</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tr--light"></tbody>
+      </table>
+
+      <form class="form__content" id="create-contract">
+        <h2>Create new contract</h2>
+        <div class="form__item">
+          <label>Date:</label>
+          <input type="date" name="newDateName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Return date:</label>
+          <input type="date" name="newReturnDateName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Pledge (₽):</label>
+          <input type="number" name="newPledgeName" placeholder="Enter pledge" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Fio employee:</label>
+          <select name="newFioEmployeeNames"></select>
+        </div>
+        <div class="form__item">
+          <label>Fio client:</label>
+          <select name="newFioClientNames"></select>
+        </div>
+        <div class="form__item">
+          <label>Car number:</label>
+          <select name="newCarNumberNames"></select>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-create-contract">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+
+      <form class="form__content" id="edit-contract">
+        <h2>Edit contract</h2>
+        <div class="form__item">
+          <label>Date:</label>
+          <input type="date" name="updatedDateName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Return date:</label>
+          <input type="date" name="updatedReturnDateName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Pledge (₽):</label>
+          <input type="number" name="updatedPledgeName" size="25" required>
+        </div>
+        <div class="form__item">
+          <label>Fio employee:</label>
+          <select name="updatedFioEmployeeNames"></select>
+        </div>
+        <div class="form__item">
+          <label>Fio client:</label>
+          <select name="updatedFioClientNames"></select>
+        </div>
+        <div class="form__item">
+          <label>Car number:</label>
+          <select name="updatedCarNumberNames"></select>
+        </div>
+        <button type="reset">Reset</button>
+        <button id="btn-back-edit-contract">Back</button>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
   </main>
 

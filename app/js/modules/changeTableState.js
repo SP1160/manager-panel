@@ -43,7 +43,6 @@ function openActiveTable(iconsSelector) {
 
     if (btn.getAttribute('data-link') === 'contract') {
       btn.addEventListener('click', () => {
-        openSidebar('nav')
         getActiveTable('#contract', '#job', '#employee', '#car', '#client')
       })
     }

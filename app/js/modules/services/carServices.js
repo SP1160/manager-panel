@@ -10,9 +10,9 @@ function createNewCar(formID, sectionName) {
   form.addEventListener('submit', async event => {
     event.preventDefault()
 
-    const newCarBrand = form.newCarBrand.value.trim()
-    const newCarNumber = form.newCarNumber.value.toUpperCase().trim()
-    const newPricePerDay = form.newPricePerDay.value
+    const newCarBrandName = form.newCarBrandName.value.trim()
+    const newCarNumberName = form.newCarNumberName.value.toUpperCase().trim()
+    const newPricePerDayName = form.newPricePerDayName.value
 
     let maxId
     try {
@@ -25,9 +25,9 @@ function createNewCar(formID, sectionName) {
 
     const newInfo = {
       id: maxId + 1,
-      carBrand: newCarBrand,
-      carNumber: newCarNumber,
-      price: newPricePerDay
+      carBrand: newCarBrandName,
+      carNumber: newCarNumberName,
+      price: parseInt(newPricePerDayName)
     }
 
     try {
@@ -40,6 +40,8 @@ function createNewCar(formID, sectionName) {
   })
 }
 
+let editCarEventListener = null
+
 async function editCar(formID, sectionName) {
   openEditForm(
     '#car',
@@ -47,9 +49,9 @@ async function editCar(formID, sectionName) {
     '#btn-back-edit-car',
     async function (dataEditValue) {
       const form = document.querySelector(formID)
-      const formInputCarBrand = form.updatedCarBrand
-      const formInputCarNumber = form.updatedCarNumber
-      const formInputCarPricePerDay = form.updatedPricePerDay
+      const formInputCarBrand = form.updatedCarBrandName
+      const formInputCarNumber = form.updatedCarNumberName
+      const formInputCarPricePerDay = form.updatedPricePerDayName
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
@@ -59,26 +61,26 @@ async function editCar(formID, sectionName) {
         formInputCarNumber.value = data[parseInt(dataEditValue) - 1].carNumber
         formInputCarPricePerDay.value = data[parseInt(dataEditValue) - 1].price
 
-        form.addEventListener('submit', async event => {
+        editCarEventListener =  async event => {
           event.preventDefault()
 
-          const newCarBrand = formInputCarBrand.value.trim()
-          const newCarNumber = formInputCarNumber.value.toUpperCase().trim()
-          const newPricePerDay = formInputCarPricePerDay.value
+          const newCarBrandName = formInputCarBrand.value.trim()
+          const newCarNumberName = formInputCarNumber.value.toUpperCase().trim()
+          const newPricePerDayName = formInputCarPricePerDay.value
 
           if (
-            newCarBrand === data[parseInt(dataEditValue) - 1].carBrand &&
-            newCarNumber === data[parseInt(dataEditValue) - 1].carNumber &&
-            newPricePerDay === data[parseInt(dataEditValue) - 1].price) {
+            newCarBrandName === data[parseInt(dataEditValue) - 1].carBrand &&
+            newCarNumberName === data[parseInt(dataEditValue) - 1].carNumber &&
+            newPricePerDayName === data[parseInt(dataEditValue) - 1].price) {
             console.log('Info not changed. Form not submitted.')
             return
           }
 
           const updatedData = {
             id: data[parseInt(dataEditValue) - 1].id,
-            carBrand: newCarBrand,
-            carNumber: newCarNumber,
-            price: newPricePerDay
+            carBrand: newCarBrandName,
+            carNumber: newCarNumberName,
+            price: parseInt(newPricePerDayName)
           }
 
           try {
@@ -93,7 +95,9 @@ async function editCar(formID, sectionName) {
           } catch (error) {
             console.error(error)
           }
-        })
+        }
+
+        form.addEventListener('submit', editCarEventListener)
       } catch (error) {
         console.error(error)
       }
@@ -101,4 +105,12 @@ async function editCar(formID, sectionName) {
   )
 }
 
-export { createNewCar, editCar }
+function removeEditCarEventListener(form) {
+  // Check if the event listener is assigned and remove it
+  if (editCarEventListener) {
+    form.removeEventListener('submit', editCarEventListener)
+    editCarEventListener = null
+  }
+}
+
+export { createNewCar, editCar, removeEditCarEventListener }

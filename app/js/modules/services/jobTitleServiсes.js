@@ -36,6 +36,8 @@ function createNewJobTitle(formID, sectionName) {
   })
 }
 
+let editJobTitleEventListener = null;
+
 async function editJobTitle(formID, sectionName) {
   openEditForm(
     '#job',
@@ -51,7 +53,7 @@ async function editJobTitle(formID, sectionName) {
 
         formInput.value = data[parseInt(dataEditValue) - 1].jobTitle
 
-        form.addEventListener('submit', async event => {
+        editJobTitleEventListener = async event => {
           event.preventDefault()
 
           const newJobTitle = formInput.value.trim()
@@ -78,7 +80,9 @@ async function editJobTitle(formID, sectionName) {
           } catch (error) {
             console.error(error)
           }
-        })
+        }
+
+        form.addEventListener('submit', editJobTitleEventListener)
       } catch (error) {
         console.error(error)
       }
@@ -86,4 +90,12 @@ async function editJobTitle(formID, sectionName) {
   )
 }
 
-export { createNewJobTitle, editJobTitle }
+function removeEditJobTitleEventListener(form) {
+  // Check if the event listener is assigned and remove it
+  if (editJobTitleEventListener) {
+    form.removeEventListener('submit', editJobTitleEventListener);
+    editJobTitleEventListener = null;
+  }
+}
+
+export { createNewJobTitle, editJobTitle, removeEditJobTitleEventListener }

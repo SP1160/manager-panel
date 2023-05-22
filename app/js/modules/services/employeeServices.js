@@ -24,13 +24,13 @@ function createNewEmployee(formID, sectionName) {
       } catch (error) {
         console.error(error)
       }
-  
+
       const newInfo = {
         id: maxId + 1,
         fioEmployee: newFioName,
-        jobTitle: newJobTitleName
+        jobTitle: newJobTitleName,
       }
-  
+
       try {
         await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
         console.log('Info added successfully!')
@@ -43,6 +43,8 @@ function createNewEmployee(formID, sectionName) {
     }
   })
 }
+
+let editEmployeeEventListener = null
 
 async function editEmployee(formID, sectionName) {
   openEditForm(
@@ -59,15 +61,20 @@ async function editEmployee(formID, sectionName) {
 
         formInputFio.value = data[parseInt(dataEditValue) - 1].fioEmployee
 
-        form.addEventListener('submit', async event => {
+        // Assign the event listener to the variable
+        editEmployeeEventListener = async event => {
           event.preventDefault()
 
           const newFio = formInputFio.value.trim()
           const selectElement = form.updatedJobTitleNames
-          const selectOption = selectElement.options[selectElement.selectedIndex]
+          const selectOption =
+            selectElement.options[selectElement.selectedIndex]
           const newJobTitleName = selectOption.textContent
 
-          if (newFio === data[parseInt(dataEditValue) - 1].fioEmployee && newJobTitleName === data[parseInt(dataEditValue) - 1].jobTitle) {
+          if (
+            newFio === data[parseInt(dataEditValue) - 1].fioEmployee &&
+            newJobTitleName === data[parseInt(dataEditValue) - 1].jobTitle
+          ) {
             console.log('Info not changed. Form not submitted.')
             return
           }
@@ -75,7 +82,7 @@ async function editEmployee(formID, sectionName) {
           const updatedData = {
             id: data[parseInt(dataEditValue) - 1].id,
             fioEmployee: newFio,
-            jobTitle: newJobTitleName
+            jobTitle: newJobTitleName,
           }
 
           try {
@@ -90,7 +97,10 @@ async function editEmployee(formID, sectionName) {
           } catch (error) {
             console.error(error)
           }
-        })
+        }
+
+        // Add the event listener to the form
+        form.addEventListener('submit', editEmployeeEventListener)
       } catch (error) {
         console.error(error)
       }
@@ -98,4 +108,12 @@ async function editEmployee(formID, sectionName) {
   )
 }
 
-export { createNewEmployee, editEmployee }
+function removeEditEmployeeEventListener(form) {
+  // Check if the event listener is assigned and remove it
+  if (editEmployeeEventListener) {
+    form.removeEventListener('submit', editEmployeeEventListener)
+    editEmployeeEventListener = null
+  }
+}
+
+export { createNewEmployee, editEmployee, removeEditEmployeeEventListener }

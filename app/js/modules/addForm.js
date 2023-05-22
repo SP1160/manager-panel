@@ -1,5 +1,10 @@
 'use strict'
 
+import { removeEditEmployeeEventListener } from "./services/employeeServices.js"
+import { removeEditJobTitleEventListener } from "./services/jobTitleServiсes.js"
+import { removeEditClientEventListener } from "./services/clientServices.js"
+import { removeEditCarEventListener } from "./services/carServices.js"
+
 function openCreateForm(tableID, formID, btnBackID) {
   const table = document.querySelector(tableID)
   const form = document.querySelector(formID)
@@ -101,9 +106,9 @@ function openEditForm(tableID, formID, btnBackID, callback) {
         const carNumber = row.querySelector('td:nth-child(2)').innerText
         const carPricePerDay = row.querySelector('td:nth-child(3)').innerText
 
-        form.querySelector('input[name="updatedCarBrand"]').value = carBrand
-        form.querySelector('input[name="updatedCarNumber"]').value = carNumber
-        form.querySelector('input[name="updatedPricePerDay"]').value = carPricePerDay
+        form.querySelector('input[name="updatedCarBrandName"]').value = carBrand
+        form.querySelector('input[name="updatedCarNumberName"]').value = carNumber
+        form.querySelector('input[name="updatedPricePerDayName"]').value = carPricePerDay
 
         table.classList.remove('active-table')
         form.classList.add('active-form')
@@ -156,6 +161,12 @@ function comebackToMainPage(table, form, btnBack, sidebar) {
     if (form.updatedJobTitleNames) {
       form.updatedJobTitleNames.innerHTML = ''
     }
+
+    form.reset()
+    removeEditEmployeeEventListener(form)
+    removeEditJobTitleEventListener(form)
+    removeEditClientEventListener(form)
+    removeEditCarEventListener(form)
   })
 }
 

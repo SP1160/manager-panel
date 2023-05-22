@@ -38,6 +38,8 @@ function createNewClient(formID, sectionName) {
   })
 }
 
+let editClientEventListener = null;
+
 async function editClient(formID, sectionName) {
   openEditForm(
     '#client',
@@ -55,7 +57,7 @@ async function editClient(formID, sectionName) {
         formInputClientFio.value = data[parseInt(dataEditValue) - 1].fioClient
         formInputTelephoneClient.value = data[parseInt(dataEditValue) - 1].telephone
 
-        form.addEventListener('submit', async event => {
+        editClientEventListener = async event => {
           event.preventDefault()
 
           const newFioClientName = formInputClientFio.value.trim()
@@ -84,7 +86,9 @@ async function editClient(formID, sectionName) {
           } catch (error) {
             console.error(error)
           }
-        })
+        }
+
+      form.addEventListener('submit', editClientEventListener)
       } catch (error) {
         console.error(error)
       }
@@ -92,4 +96,12 @@ async function editClient(formID, sectionName) {
   )
 }
 
-export { createNewClient, editClient }
+function removeEditClientEventListener(form) {
+  // Check if the event listener is assigned and remove it
+  if (editClientEventListener) {
+    form.removeEventListener('submit', editClientEventListener)
+    editClientEventListener = null
+  }
+}
+
+export { createNewClient, editClient, removeEditClientEventListener }
