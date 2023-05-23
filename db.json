@@ -16,18 +16,13 @@
   "employee": [
     {
       "id": 1,
-      "fioEmployee": "888",
-      "jobTitle": "Менеджер по продажам"
+      "fioEmployee": "Лазарев Мирон Богданович",
+      "jobTitle": "Арендодатель автомобилей"
     },
     {
       "id": 2,
-      "fioEmployee": "123",
-      "jobTitle": "Арендодатель автомобилей"
-    },
-    {
-      "id": 4,
-      "fioEmployee": "gthrthrt",
-      "jobTitle": "Арендодатель автомобилей"
+      "fioEmployee": "Сергеев Арсений Фролович",
+      "jobTitle": "Директор автопроката"
     }
   ],
   "car": [
@@ -49,19 +44,35 @@
       "id": 1,
       "fioClient": "Пукин Петр Александрович",
       "telephone": "+79999999999"
+    },
+    {
+      "id": 2,
+      "fioClient": "Громов Александр Викторович",
+      "telephone": "+79993458869"
     }
   ],
   "contract": [
     {
-      "id": 1,
-      "date": "09.05.2023",
-      "returnDate": "10.05.2023",
+      "id": 2,
+      "date": "23.05.2023",
+      "returnDate": "24.05.2023",
       "pledge": 5000,
-      "fioEmployee": "Петров Иван Сергеевич",
-      "fioClient": "Пупкин Петр Александрович",
+      "fioEmployee": "Лазарев Мирон Богданович",
+      "fioClient": "Пукин Петр Александрович",
       "carBrand": "BMW M3",
-      "carNumber": "С065МК",
+      "carNumber": "К888ОТ",
       "price": 15000
+    },
+    {
+      "id": 3,
+      "date": "24.05.2023",
+      "returnDate": "25.05.2023",
+      "pledge": 6000,
+      "fioEmployee": "Сергеев Арсений Фролович",
+      "fioClient": "Громов Александр Викторович",
+      "carBrand": "Gold RS",
+      "carNumber": "О888ОО",
+      "price": 6200
     }
   ]
 }

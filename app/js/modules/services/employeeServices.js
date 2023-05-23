@@ -11,9 +11,9 @@ function createNewEmployee(formID, sectionName) {
     event.preventDefault()
 
     try {
-      const selectElement = form.newJobTitleNames
-      const selectOption = selectElement.options[selectElement.selectedIndex]
-      const newJobTitleName = selectOption.textContent
+      const newJobTitleName =
+        form.newJobTitleNames.options[form.newJobTitleNames.selectedIndex]
+          .textContent
       const newFioName = form.newFioName.value.trim()
 
       let maxId
@@ -34,7 +34,6 @@ function createNewEmployee(formID, sectionName) {
       try {
         await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
         console.log('Info added successfully!')
-        form.reset()
       } catch (error) {
         console.error(error)
       }
@@ -54,6 +53,7 @@ async function editEmployee(formID, sectionName) {
     async function (dataEditValue) {
       const form = document.querySelector(formID)
       const formInputFio = form.updatedFioName
+      const selectElement = form.updatedJobTitleNames
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
@@ -61,15 +61,21 @@ async function editEmployee(formID, sectionName) {
 
         formInputFio.value = data[parseInt(dataEditValue) - 1].fioEmployee
 
-        // Assign the event listener to the variable
+        const jobTitle = data[parseInt(dataEditValue) - 1].jobTitle
+        for (let i = 0; i < selectElement.options.length; i++) {
+          const option = selectElement.options[i]
+          if (option.textContent === jobTitle) {
+            option.selected = true
+            break
+          }
+        }
+
         editEmployeeEventListener = async event => {
           event.preventDefault()
 
           const newFio = formInputFio.value.trim()
-          const selectElement = form.updatedJobTitleNames
-          const selectOption =
-            selectElement.options[selectElement.selectedIndex]
-          const newJobTitleName = selectOption.textContent
+          const newJobTitleName =
+            selectElement.options[selectElement.selectedIndex].textContent
 
           if (
             newFio === data[parseInt(dataEditValue) - 1].fioEmployee &&
@@ -99,7 +105,6 @@ async function editEmployee(formID, sectionName) {
           }
         }
 
-        // Add the event listener to the form
         form.addEventListener('submit', editEmployeeEventListener)
       } catch (error) {
         console.error(error)
@@ -109,7 +114,6 @@ async function editEmployee(formID, sectionName) {
 }
 
 function removeEditEmployeeEventListener(form) {
-  // Check if the event listener is assigned and remove it
   if (editEmployeeEventListener) {
     form.removeEventListener('submit', editEmployeeEventListener)
     editEmployeeEventListener = null

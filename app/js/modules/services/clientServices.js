@@ -31,7 +31,6 @@ function createNewClient(formID, sectionName) {
     try {
       await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
       console.log('Info added successfully!')
-      form.reset()
     } catch (error) {
       console.error(error)
     }
@@ -97,7 +96,6 @@ async function editClient(formID, sectionName) {
 }
 
 function removeEditClientEventListener(form) {
-  // Check if the event listener is assigned and remove it
   if (editClientEventListener) {
     form.removeEventListener('submit', editClientEventListener)
     editClientEventListener = null

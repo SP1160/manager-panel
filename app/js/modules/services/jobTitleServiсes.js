@@ -29,7 +29,6 @@ function createNewJobTitle(formID, sectionName) {
     try {
       await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
       console.log('Info added successfully!')
-      form.reset()
     } catch (error) {
       console.error(error)
     }
@@ -91,7 +90,6 @@ async function editJobTitle(formID, sectionName) {
 }
 
 function removeEditJobTitleEventListener(form) {
-  // Check if the event listener is assigned and remove it
   if (editJobTitleEventListener) {
     form.removeEventListener('submit', editJobTitleEventListener);
     editJobTitleEventListener = null;

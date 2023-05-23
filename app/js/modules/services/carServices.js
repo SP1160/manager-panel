@@ -12,7 +12,7 @@ function createNewCar(formID, sectionName) {
 
     const newCarBrandName = form.newCarBrandName.value.trim()
     const newCarNumberName = form.newCarNumberName.value.toUpperCase().trim()
-    const newPricePerDayName = form.newPricePerDayName.value
+    const newPricePerDayName = parseInt(form.newPricePerDayName.value)
 
     let maxId
     try {
@@ -27,13 +27,12 @@ function createNewCar(formID, sectionName) {
       id: maxId + 1,
       carBrand: newCarBrandName,
       carNumber: newCarNumberName,
-      price: parseInt(newPricePerDayName)
+      price: newPricePerDayName
     }
 
     try {
       await axios.post(`http://localhost:3000/${sectionName}`, newInfo)
       console.log('Info added successfully!')
-      form.reset()
     } catch (error) {
       console.error(error)
     }
@@ -66,7 +65,7 @@ async function editCar(formID, sectionName) {
 
           const newCarBrandName = formInputCarBrand.value.trim()
           const newCarNumberName = formInputCarNumber.value.toUpperCase().trim()
-          const newPricePerDayName = formInputCarPricePerDay.value
+          const newPricePerDayName = parseInt(formInputCarPricePerDay.value)
 
           if (
             newCarBrandName === data[parseInt(dataEditValue) - 1].carBrand &&
@@ -80,7 +79,7 @@ async function editCar(formID, sectionName) {
             id: data[parseInt(dataEditValue) - 1].id,
             carBrand: newCarBrandName,
             carNumber: newCarNumberName,
-            price: parseInt(newPricePerDayName)
+            price: newPricePerDayName
           }
 
           try {
@@ -106,7 +105,6 @@ async function editCar(formID, sectionName) {
 }
 
 function removeEditCarEventListener(form) {
-  // Check if the event listener is assigned and remove it
   if (editCarEventListener) {
     form.removeEventListener('submit', editCarEventListener)
     editCarEventListener = null
