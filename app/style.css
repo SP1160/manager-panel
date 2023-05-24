@@ -340,7 +340,7 @@ tr {
 
 .form__content {
   font-size: 20px;
-  margin-top: 200px;
+  margin-top: 120px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -348,7 +348,8 @@ tr {
   display: none;
 }
 
-.form__content button {
+.form__content button,
+.contract__container button {
   cursor: pointer;
   min-width: 300px;
   min-height: 45px;
@@ -362,4 +363,47 @@ tr {
 
 .form--dark {
   color: #fff;
+}
+
+/* ===== Contract ===== */
+
+.contract__container {
+  margin: 100px 200px;
+}
+
+.contract__container button {
+  margin-left: 60%;
+}
+
+.contract__container h1 {
+  text-align: center;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.party-info {
+  margin-top: 20px;
+}
+
+.party-info .party {
+  margin-bottom: 10px;
+}
+
+.party-info .party:last-child {
+  margin-bottom: 0;
+}
+
+.terms-section {
+  margin-top: 20px;
+}
+
+.terms-section ul {
+  margin-left: 45px;
+}
+
+.terms-section .term {
+  margin-bottom: 10px;
 }

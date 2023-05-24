@@ -23,6 +23,11 @@
       "id": 2,
       "fioEmployee": "Сергеев Арсений Фролович",
       "jobTitle": "Директор автопроката"
+    },
+    {
+      "id": 3,
+      "fioEmployee": "Есин Кирилл Михайлович",
+      "jobTitle": "Менеджер по продажам"
     }
   ],
   "car": [
@@ -36,43 +41,65 @@
       "id": 3,
       "carBrand": "Gold RS",
       "carNumber": "О888ОО",
-      "price": 6200
+      "price": 9500
+    },
+    {
+      "id": 4,
+      "carBrand": "Ford RS",
+      "carNumber": "А100КК",
+      "price": 10000
     }
   ],
   "client": [
     {
-      "id": 1,
-      "fioClient": "Пукин Петр Александрович",
-      "telephone": "+79999999999"
+      "id": 3,
+      "fioClient": "Благушин Дмитрий Владимирович",
+      "telephone": "+79992281337"
     },
     {
-      "id": 2,
-      "fioClient": "Громов Александр Викторович",
+      "id": 4,
+      "fioClient": "Долгов Артемий Александрович",
       "telephone": "+79993458869"
+    },
+    {
+      "id": 5,
+      "fioClient": "Новожилов Кирилл Алексеевич",
+      "telephone": "+79333435241"
     }
   ],
   "contract": [
     {
-      "id": 2,
-      "date": "23.05.2023",
-      "returnDate": "24.05.2023",
+      "id": 3,
+      "date": "24.05.2023",
+      "returnDate": "25.05.2023",
+      "pledge": 3000,
+      "fioEmployee": "Есин Кирилл Михайлович",
+      "fioClient": "Долгов Артемий Александрович",
+      "carBrand": "Gold RS",
+      "carNumber": "О888ОО",
+      "price": 9500
+    },
+    {
+      "id": 4,
+      "date": "25.05.2023",
+      "returnDate": "26.05.2023",
       "pledge": 5000,
-      "fioEmployee": "Лазарев Мирон Богданович",
-      "fioClient": "Пукин Петр Александрович",
+      "fioEmployee": "Сергеев Арсений Фролович",
+      "fioClient": "Благушин Дмитрий Владимирович",
       "carBrand": "BMW M3",
       "carNumber": "К888ОТ",
       "price": 15000
     },
     {
-      "id": 3,
-      "date": "24.05.2023",
-      "returnDate": "25.05.2023",
-      "pledge": 6000,
-      "fioEmployee": "Сергеев Арсений Фролович",
-      "fioClient": "Громов Александр Викторович",
-      "carBrand": "Gold RS",
-      "carNumber": "О888ОО",
-      "price": 6200
+      "id": 5,
+      "date": "01.06.2023",
+      "returnDate": "02.06.2023",
+      "pledge": 3500,
+      "fioEmployee": "Есин Кирилл Михайлович",
+      "fioClient": "Новожилов Кирилл Алексеевич",
+      "carBrand": "Ford RS",
+      "carNumber": "А100КК",
+      "price": 10000
     }
   ]
 }

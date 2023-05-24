@@ -15,7 +15,9 @@ function createNewContract(formID, sectionName) {
       const secondDate = new Date(form.newReturnDateName.value)
 
       if (secondDate.getTime() - firstDate.getTime() !== 86400000) {
-        alert('The date is entered incorrectly. The contract is for 1 day only.')
+        alert(
+          'The date is entered incorrectly. The contract is for 1 day only.'
+        )
         return
       }
 
@@ -93,7 +95,7 @@ function createNewContract(formID, sectionName) {
         fioClient: newClientFioName,
         carBrand: newCarBrandName,
         carNumber: newCarNumberName,
-        price: parseInt(newPricePerDayName)
+        price: parseInt(newPricePerDayName),
       }
 
       try {
@@ -111,9 +113,9 @@ function createNewContract(formID, sectionName) {
 let editContractEventListener = null
 
 function convertDateFormat(dateString) {
-  const parts = dateString.split('.');
-  const formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0];
-  return formattedDate;
+  const parts = dateString.split('.')
+  const formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0]
+  return formattedDate
 }
 
 async function editContract(formID, sectionName) {
@@ -127,7 +129,7 @@ async function editContract(formID, sectionName) {
       const formDate = form.updatedDateName
       const formReturnDate = form.updatedReturnDateName
       const formNumberPledge = form.updatedPledgeName
-      
+
       const selectElementEmployeeFio = form.updatedFioEmployeeNames
       const selectElementClientFio = form.updatedFioClientNames
       const selectElementCarNumber = form.updatedCarNumberNames
@@ -136,8 +138,12 @@ async function editContract(formID, sectionName) {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
 
-        formDate.value = convertDateFormat(data[parseInt(dataEditValue) - 1].date)
-        formReturnDate.value = convertDateFormat(data[parseInt(dataEditValue) - 1].returnDate)
+        formDate.value = convertDateFormat(
+          data[parseInt(dataEditValue) - 1].date
+        )
+        formReturnDate.value = convertDateFormat(
+          data[parseInt(dataEditValue) - 1].returnDate
+        )
         formNumberPledge.value = data[parseInt(dataEditValue) - 1].pledge
 
         const fioEmployee = data[parseInt(dataEditValue) - 1].fioEmployee
@@ -172,56 +178,62 @@ async function editContract(formID, sectionName) {
 
           const firstDate = new Date(form.updatedDateName.value)
           const secondDate = new Date(form.updatedReturnDateName.value)
-    
+
           if (secondDate.getTime() - firstDate.getTime() !== 86400000) {
-            alert('The date is entered incorrectly. The contract is for 1 day only.')
+            alert(
+              'The date is entered incorrectly. The contract is for 1 day only.'
+            )
             return
           }
 
           const newDateName = `${formDate.value.slice(
             8,
             10
-          )}.${formDate.value.slice(5, 7)}.${formDate.value.slice(
-            0,
-            4
-          )}`
+          )}.${formDate.value.slice(5, 7)}.${formDate.value.slice(0, 4)}`
           const newReturnDateName = `${formReturnDate.value.slice(
             8,
             10
-          )}.${formReturnDate.value.slice(
-            5,
-            7
-          )}.${formReturnDate.value.slice(0, 4)}`
+          )}.${formReturnDate.value.slice(5, 7)}.${formReturnDate.value.slice(
+            0,
+            4
+          )}`
 
           const newPledgeName = parseInt(formNumberPledge.value)
-          const newEmployeeFioName = selectElementEmployeeFio.options[selectElementEmployeeFio.selectedIndex].textContent
-          const newClientFioName = selectElementClientFio.options[selectElementClientFio.selectedIndex].textContent
+          const newEmployeeFioName =
+            selectElementEmployeeFio.options[
+              selectElementEmployeeFio.selectedIndex
+            ].textContent
+          const newClientFioName =
+            selectElementClientFio.options[selectElementClientFio.selectedIndex]
+              .textContent
 
-          const newCarNumberName = selectElementCarNumber.options[selectElementCarNumber.selectedIndex].textContent
+          const newCarNumberName =
+            selectElementCarNumber.options[selectElementCarNumber.selectedIndex]
+              .textContent
 
           const carNumbers = []
           const carBrands = []
           const pricesPerDay = []
-    
+
           const tableRows = document.querySelectorAll('#car tbody tr')
-    
+
           tableRows.forEach(row => {
             const carNumberCell = row.cells[2]
             const carBrandCell = row.cells[1]
             const pricePerDayCell = row.cells[3]
-    
+
             const carNumber = carNumberCell.textContent
             const carBrand = carBrandCell.textContent
             const pricePerDay = pricePerDayCell.textContent
-    
+
             carNumbers.push(carNumber)
             carBrands.push(carBrand)
             pricesPerDay.push(pricePerDay)
           })
-    
+
           const targetCarNumber = newCarNumberName
           const index = carNumbers.indexOf(targetCarNumber)
-    
+
           let newCarBrandName = null
           let newPricePerDayName = null
           if (index !== -1) {
@@ -231,9 +243,11 @@ async function editContract(formID, sectionName) {
 
           if (
             newDateName === data[parseInt(dataEditValue) - 1].date &&
-            newReturnDateName === data[parseInt(dataEditValue) - 1].returnDate &&
+            newReturnDateName ===
+              data[parseInt(dataEditValue) - 1].returnDate &&
             newPledgeName === data[parseInt(dataEditValue) - 1].pledge &&
-            newEmployeeFioName === data[parseInt(dataEditValue) - 1].fioEmployee &&
+            newEmployeeFioName ===
+              data[parseInt(dataEditValue) - 1].fioEmployee &&
             newClientFioName === data[parseInt(dataEditValue) - 1].fioClient &&
             newCarNumberName === data[parseInt(dataEditValue) - 1].carNumber
           ) {
@@ -250,7 +264,7 @@ async function editContract(formID, sectionName) {
             fioClient: newClientFioName,
             carBrand: newCarBrandName,
             carNumber: newCarNumberName,
-            price: parseInt(newPricePerDayName)
+            price: parseInt(newPricePerDayName),
           }
 
           console.log(updatedData)
@@ -284,4 +298,4 @@ function removeEditContractEventListener(form) {
   }
 }
 
-export { createNewContract, editContract, removeEditContractEventListener}
+export { createNewContract, editContract, removeEditContractEventListener }

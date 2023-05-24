@@ -7,6 +7,7 @@ import { createNewEmployee, editEmployee } from "./modules/services/employeeServ
 import { createNewCar, editCar } from "./modules/services/carServices.js"
 import { createNewClient, editClient } from "./modules/services/clientServices.js"
 import { createNewContract, editContract } from "./modules/services/contractServices.js"
+import { generateContractPage } from "./modules/addContract.js"
 
 window.addEventListener('DOMContentLoaded', () => {
   let isSidebarClosed = localStorage.getItem('isSidebarClosed') === 'true'
@@ -55,4 +56,6 @@ window.addEventListener('DOMContentLoaded', () => {
   createNewContract('#create-contract', 'contract')
   editContract('#edit-contract', 'contract')
   deleteRow('contract', 'contract')
+
+  generateContractPage('#contract')
 })
