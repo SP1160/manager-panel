@@ -279,18 +279,13 @@ body.dark .switch::before {
 
 table {
   margin-top: 100px;
-  margin-left: 220px;
+  margin-left: 260px;
+  margin-right: 10px;
   border-collapse: collapse;
   border-spacing: 0;
   border-radius: 12px;
   overflow: hidden;
   display: none;
-}
-
-@media screen and (min-width: 1400px) {
-  table {
-    margin-left: 100px;
-  }
 }
 
 .active-table {
@@ -299,7 +294,7 @@ table {
 
 td,
 th {
-  padding: 15px 20px;
+  padding: 15px 25px;
   text-align: center;
 }
 
@@ -336,13 +331,24 @@ tr {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1580px) {
+  table {
+    margin-left: 260px;
+    margin-right: 10px;
+  }
+
+  td,
+  th {
+    padding: 15px 10px;
+  }
+}
+
 /* ===== Forms ===== */
 
 .form__content {
   font-size: 20px;
   margin-top: 120px;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 20px 0;
   display: none;

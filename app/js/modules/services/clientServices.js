@@ -16,6 +16,8 @@ function createNewClient(formID, sectionName) {
     let maxId
     let previousFios
     let previousTelephones
+    const TelephoneClientRegex = /^\+7\d{10}$/
+
     try {
       const response = await axios.get(`http://localhost:3000/${sectionName}`)
       const data = response.data
@@ -24,6 +26,11 @@ function createNewClient(formID, sectionName) {
       previousTelephones = data.map(item => item.telephone)
     } catch (error) {
       console.error(error)
+    }
+
+    if (!TelephoneClientRegex.test(newTelephoneClientName)) {
+      console.log('Invalid telephone format. Please enter a valid telephone number.');
+      return;
     }
 
     if (previousFios.includes(newFioClientName) || previousTelephones.includes(newTelephoneClientName)) {
@@ -59,6 +66,7 @@ async function editClient(formID, sectionName) {
       const formInputTelephoneClient = form.updatedTelephoneClientName
       let previousFios
       let previousTelephones
+      const TelephoneClientRegex = /^\+7\d{10}$/
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
@@ -78,6 +86,11 @@ async function editClient(formID, sectionName) {
           if (newFioClientName === data[parseInt(dataEditValue) - 1].fioClient && newTelephoneClientName === data[parseInt(dataEditValue) - 1].telephone) {
             console.log('Info not changed. Form not submitted.')
             return
+          }
+
+          if (!TelephoneClientRegex.test(newTelephoneClientName)) {
+            console.log('Invalid telephone format. Please enter a valid telephone number.');
+            return;
           }
 
           if (previousFios.includes(newFioClientName) || previousTelephones.includes(newTelephoneClientName)) {

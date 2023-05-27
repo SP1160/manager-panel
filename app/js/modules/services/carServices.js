@@ -16,6 +16,8 @@ function createNewCar(formID, sectionName) {
 
     let maxId
     let previousCarNumbers
+    const carNumberRegex = /^([АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ][АВЕКМНОРСТУХ])$/
+
     try {
       const response = await axios.get(`http://localhost:3000/${sectionName}`)
       const data = response.data
@@ -23,6 +25,11 @@ function createNewCar(formID, sectionName) {
       previousCarNumbers = data.map(item => item.carNumber)
     } catch (error) {
       console.error(error)
+    }
+
+    if (!carNumberRegex.test(newCarNumberName)) {
+      console.log('Invalid car number format. Please enter a valid car number.')
+      return
     }
 
     if (previousCarNumbers.includes(newCarNumberName)) {
@@ -34,7 +41,7 @@ function createNewCar(formID, sectionName) {
       id: maxId + 1,
       carBrand: newCarBrandName,
       carNumber: newCarNumberName,
-      price: newPricePerDayName
+      price: newPricePerDayName,
     }
 
     try {
@@ -59,6 +66,7 @@ async function editCar(formID, sectionName) {
       const formInputCarNumber = form.updatedCarNumberName
       const formInputCarPricePerDay = form.updatedPricePerDayName
       let previousCarNumbers
+      const carNumberRegex = /^([АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2})$/
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
@@ -69,7 +77,7 @@ async function editCar(formID, sectionName) {
         formInputCarNumber.value = data[parseInt(dataEditValue) - 1].carNumber
         formInputCarPricePerDay.value = data[parseInt(dataEditValue) - 1].price
 
-        editCarEventListener =  async event => {
+        editCarEventListener = async event => {
           event.preventDefault()
 
           const newCarBrandName = formInputCarBrand.value.trim()
@@ -79,8 +87,14 @@ async function editCar(formID, sectionName) {
           if (
             newCarBrandName === data[parseInt(dataEditValue) - 1].carBrand &&
             newCarNumberName === data[parseInt(dataEditValue) - 1].carNumber &&
-            newPricePerDayName === data[parseInt(dataEditValue) - 1].price) {
+            newPricePerDayName === data[parseInt(dataEditValue) - 1].price
+          ) {
             console.log('Info not changed. Form not submitted.')
+            return
+          }
+
+          if (!carNumberRegex.test(newCarNumberName)) {
+            console.log('Invalid car number format. Please enter a valid car number.')
             return
           }
 
@@ -93,7 +107,7 @@ async function editCar(formID, sectionName) {
             id: data[parseInt(dataEditValue) - 1].id,
             carBrand: newCarBrandName,
             carNumber: newCarNumberName,
-            price: newPricePerDayName
+            price: newPricePerDayName,
           }
 
           try {
