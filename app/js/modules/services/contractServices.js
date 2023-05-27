@@ -48,9 +48,10 @@ function createNewContract(formID, sectionName) {
           .textContent
 
       let maxId
+      let data
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
-        const data = response.data
+        data = response.data
         maxId = data[data.length - 1].id
       } catch (error) {
         console.error(error)
@@ -96,6 +97,19 @@ function createNewContract(formID, sectionName) {
         carBrand: newCarBrandName,
         carNumber: newCarNumberName,
         price: parseInt(newPricePerDayName),
+      }
+
+      const isCombinationExists = data.some(item => {
+        return (
+          item.date === newInfo.date &&
+          item.returnDate === newInfo.returnDate &&
+          item.carNumber === newInfo.carNumber
+        )
+      })
+
+      if (isCombinationExists) {
+        console.log('Info already exists. Please enter a different info.')
+        return
       }
 
       try {
@@ -267,7 +281,18 @@ async function editContract(formID, sectionName) {
             price: parseInt(newPricePerDayName),
           }
 
-          console.log(updatedData)
+          const isCombinationExists = data.some(item => {
+            return (
+              item.date === updatedData.date &&
+              item.returnDate === updatedData.returnDate &&
+              item.carNumber === updatedData.carNumber
+            )
+          })
+    
+          if (isCombinationExists) {
+            console.log('Info already exists. Please enter a different info.')
+            return
+          }
 
           try {
             await axios.put(

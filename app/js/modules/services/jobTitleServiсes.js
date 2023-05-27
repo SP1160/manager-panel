@@ -13,12 +13,19 @@ function createNewJobTitle(formID, sectionName) {
     const newJobTitleName = form.newJobTitleName.value.trim()
 
     let maxId
+    let previousJobTitles
     try {
       const response = await axios.get(`http://localhost:3000/${sectionName}`)
       const data = response.data
       maxId = data[data.length - 1].id
+      previousJobTitles = data.map(item => item.jobTitle)
     } catch (error) {
       console.error(error)
+    }
+
+    if (previousJobTitles.includes(newJobTitleName)) {
+      console.log('Info already exists. Please enter a different info.')
+      return
     }
 
     const newInfo = {
@@ -35,7 +42,7 @@ function createNewJobTitle(formID, sectionName) {
   })
 }
 
-let editJobTitleEventListener = null;
+let editJobTitleEventListener = null
 
 async function editJobTitle(formID, sectionName) {
   openEditForm(
@@ -45,10 +52,12 @@ async function editJobTitle(formID, sectionName) {
     async function (dataEditValue) {
       const form = document.querySelector(formID)
       const formInput = form.updatedJobTitleName
+      let previousJobTitles
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
+        previousJobTitles = data.map(item => item.jobTitle)
 
         formInput.value = data[parseInt(dataEditValue) - 1].jobTitle
 
@@ -59,6 +68,11 @@ async function editJobTitle(formID, sectionName) {
 
           if (newJobTitle === data[parseInt(dataEditValue) - 1].jobTitle) {
             console.log('Info not changed. Form not submitted.')
+            return
+          }
+
+          if (previousJobTitles.includes(newJobTitle)) {
+            console.log('Info already exists. Please enter a different info.')
             return
           }
 
@@ -91,8 +105,8 @@ async function editJobTitle(formID, sectionName) {
 
 function removeEditJobTitleEventListener(form) {
   if (editJobTitleEventListener) {
-    form.removeEventListener('submit', editJobTitleEventListener);
-    editJobTitleEventListener = null;
+    form.removeEventListener('submit', editJobTitleEventListener)
+    editJobTitleEventListener = null
   }
 }
 

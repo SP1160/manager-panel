@@ -14,12 +14,21 @@ function createNewClient(formID, sectionName) {
     const newTelephoneClientName = form.newTelephoneClientName.value.trim()
 
     let maxId
+    let previousFios
+    let previousTelephones
     try {
       const response = await axios.get(`http://localhost:3000/${sectionName}`)
       const data = response.data
       maxId = data[data.length - 1].id
+      previousFios = data.map(item => item.fioClient)
+      previousTelephones = data.map(item => item.telephone)
     } catch (error) {
       console.error(error)
+    }
+
+    if (previousFios.includes(newFioClientName) || previousTelephones.includes(newTelephoneClientName)) {
+      console.log('Info already exists. Please enter a different info.')
+      return
     }
 
     const newInfo = {
@@ -48,10 +57,14 @@ async function editClient(formID, sectionName) {
       const form = document.querySelector(formID)
       const formInputClientFio = form.updatedFioClientName
       const formInputTelephoneClient = form.updatedTelephoneClientName
+      let previousFios
+      let previousTelephones
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
+        previousFios = data.map(item => item.fioClient)
+        previousTelephones = data.map(item => item.telephone)
 
         formInputClientFio.value = data[parseInt(dataEditValue) - 1].fioClient
         formInputTelephoneClient.value = data[parseInt(dataEditValue) - 1].telephone
@@ -64,6 +77,11 @@ async function editClient(formID, sectionName) {
 
           if (newFioClientName === data[parseInt(dataEditValue) - 1].fioClient && newTelephoneClientName === data[parseInt(dataEditValue) - 1].telephone) {
             console.log('Info not changed. Form not submitted.')
+            return
+          }
+
+          if (previousFios.includes(newFioClientName) || previousTelephones.includes(newTelephoneClientName)) {
+            console.log('Info already exists. Please enter a different info.')
             return
           }
 

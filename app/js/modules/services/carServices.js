@@ -15,12 +15,19 @@ function createNewCar(formID, sectionName) {
     const newPricePerDayName = parseInt(form.newPricePerDayName.value)
 
     let maxId
+    let previousCarNumbers
     try {
       const response = await axios.get(`http://localhost:3000/${sectionName}`)
       const data = response.data
       maxId = data[data.length - 1].id
+      previousCarNumbers = data.map(item => item.carNumber)
     } catch (error) {
       console.error(error)
+    }
+
+    if (previousCarNumbers.includes(newCarNumberName)) {
+      console.log('Info already exists. Please enter a different info.')
+      return
     }
 
     const newInfo = {
@@ -51,10 +58,12 @@ async function editCar(formID, sectionName) {
       const formInputCarBrand = form.updatedCarBrandName
       const formInputCarNumber = form.updatedCarNumberName
       const formInputCarPricePerDay = form.updatedPricePerDayName
+      let previousCarNumbers
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
+        previousCarNumbers = data.map(item => item.carNumber)
 
         formInputCarBrand.value = data[parseInt(dataEditValue) - 1].carBrand
         formInputCarNumber.value = data[parseInt(dataEditValue) - 1].carNumber
@@ -72,6 +81,11 @@ async function editCar(formID, sectionName) {
             newCarNumberName === data[parseInt(dataEditValue) - 1].carNumber &&
             newPricePerDayName === data[parseInt(dataEditValue) - 1].price) {
             console.log('Info not changed. Form not submitted.')
+            return
+          }
+
+          if (previousCarNumbers.includes(newCarNumberName)) {
+            console.log('Info already exists. Please enter a different info.')
             return
           }
 

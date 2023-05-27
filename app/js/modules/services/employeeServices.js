@@ -17,12 +17,19 @@ function createNewEmployee(formID, sectionName) {
       const newFioName = form.newFioName.value.trim()
 
       let maxId
+      let previousFios
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
         maxId = data[data.length - 1].id
+        previousFios = data.map(item => item.fioEmployee)
       } catch (error) {
         console.error(error)
+      }
+
+      if (previousFios.includes(newFioName)) {
+        console.log('Info already exists. Please enter a different info.')
+        return
       }
 
       const newInfo = {
@@ -37,8 +44,8 @@ function createNewEmployee(formID, sectionName) {
       } catch (error) {
         console.error(error)
       }
-    } catch {
-      console.log('Dont have any job titles')
+    } catch (error){
+      console.error(error)
     }
   })
 }
@@ -54,10 +61,12 @@ async function editEmployee(formID, sectionName) {
       const form = document.querySelector(formID)
       const formInputFio = form.updatedFioName
       const selectElement = form.updatedJobTitleNames
+      let previousFios
 
       try {
         const response = await axios.get(`http://localhost:3000/${sectionName}`)
         const data = response.data
+        previousFios = data.map(item => item.fioEmployee)
 
         formInputFio.value = data[parseInt(dataEditValue) - 1].fioEmployee
 
@@ -82,6 +91,11 @@ async function editEmployee(formID, sectionName) {
             newJobTitleName === data[parseInt(dataEditValue) - 1].jobTitle
           ) {
             console.log('Info not changed. Form not submitted.')
+            return
+          }
+
+          if (previousFios.includes(newFio)) {
+            console.log('Info already exists. Please enter a different info.')
             return
           }
 
