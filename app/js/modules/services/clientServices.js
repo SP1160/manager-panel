@@ -93,7 +93,7 @@ async function editClient(formID, sectionName) {
             return;
           }
 
-          if (previousFios.includes(newFioClientName) || previousTelephones.includes(newTelephoneClientName)) {
+          if (previousFios.includes(newFioClientName) && previousTelephones.includes(newTelephoneClientName)) {
             console.log('Info already exists. Please enter a different info.')
             return
           }

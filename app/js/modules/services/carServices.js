@@ -98,7 +98,7 @@ async function editCar(formID, sectionName) {
             return
           }
 
-          if (previousCarNumbers.includes(newCarNumberName)) {
+          if (previousCarNumbers.includes(newCarNumberName) &&  newCarNumberName !== data[parseInt(dataEditValue) - 1].carNumber) {
             console.log('Info already exists. Please enter a different info.')
             return
           }

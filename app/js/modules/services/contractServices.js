@@ -87,18 +87,6 @@ function createNewContract(formID, sectionName) {
         newPricePerDayName = pricesPerDay[index]
       }
 
-      const newInfo = {
-        id: maxId + 1,
-        date: newDateName,
-        returnDate: newReturnDateName,
-        pledge: parseInt(newPledgeName),
-        fioEmployee: newEmployeeFioName,
-        fioClient: newClientFioName,
-        carBrand: newCarBrandName,
-        carNumber: newCarNumberName,
-        price: parseInt(newPricePerDayName),
-      }
-
       const isCombinationExists = data.some(item => {
         return (
           item.date === newInfo.date &&
@@ -110,6 +98,18 @@ function createNewContract(formID, sectionName) {
       if (isCombinationExists) {
         console.log('Info already exists. Please enter a different info.')
         return
+      }
+
+      const newInfo = {
+        id: maxId + 1,
+        date: newDateName,
+        returnDate: newReturnDateName,
+        pledge: parseInt(newPledgeName),
+        fioEmployee: newEmployeeFioName,
+        fioClient: newClientFioName,
+        carBrand: newCarBrandName,
+        carNumber: newCarNumberName,
+        price: parseInt(newPricePerDayName),
       }
 
       try {
@@ -269,6 +269,19 @@ async function editContract(formID, sectionName) {
             return
           }
 
+          const isCombinationExists = data.some(item => {
+            return (
+              item.date === newDateName &&
+              item.returnDate === newReturnDateName &&
+              item.carNumber === newCarNumberName
+            )
+          })
+
+          if (isCombinationExists) {
+            console.log('Info already exists. Please enter a different info.')
+            return
+          }
+
           const updatedData = {
             id: data[parseInt(dataEditValue) - 1].id,
             date: newDateName,
@@ -279,19 +292,6 @@ async function editContract(formID, sectionName) {
             carBrand: newCarBrandName,
             carNumber: newCarNumberName,
             price: parseInt(newPricePerDayName),
-          }
-
-          const isCombinationExists = data.some(item => {
-            return (
-              item.date === updatedData.date &&
-              item.returnDate === updatedData.returnDate &&
-              item.carNumber === updatedData.carNumber
-            )
-          })
-    
-          if (isCombinationExists) {
-            console.log('Info already exists. Please enter a different info.')
-            return
           }
 
           try {
