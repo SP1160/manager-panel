@@ -89,6 +89,72 @@ function openEditForm(tableID, formID, btnBackID, callback) {
   if (tableID === '#job' || tableID === '#car' || tableID === '#client') {
     table.addEventListener('click', event => {
       if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const row = event.target.closest('tr')
+        const contractTable = document.querySelector('#contract')
+        const contractRows = contractTable.querySelectorAll('tbody tr')
+
+        if (tableID === '#client') {
+          const fioClient = row.querySelector('td:nth-child(2)').textContent
+
+          let isFioClineFound = false
+
+          for (const contractRow of contractRows) {
+            const contractClientFio = contractRow.querySelector('td:nth-child(6)').textContent
+
+            if (contractClientFio === fioClient) {
+              isFioClineFound = true
+              break
+            }
+          }
+
+          if (isFioClineFound) {
+            console.log(`Cannot edit the row in the 'client' table. Matching FIO found in 'contract' table: ${fioClient}`)
+            return
+          }
+        }
+
+        if (tableID === '#car') {
+          const carNumber = row.querySelector('td:nth-child(3)').textContent
+
+          let isNumberFound = false
+
+          for (const contractRow of contractRows) {
+            const contractCarNumber = contractRow.querySelector('td:nth-child(8)').textContent
+
+            if (contractCarNumber === carNumber) {
+              isNumberFound = true
+              break
+            }
+          }
+
+          if (isNumberFound) {
+            console.log(`Cannot edit the row in the 'car' table. Matching car number found in 'contract' table: ${carNumber}`)
+            return
+          }
+        }
+
+        if (tableID === '#job') {
+          const employeeTable = document.querySelector('#employee')
+          const employeeRows = employeeTable.querySelectorAll('tbody tr')
+          const jobTitle = row.querySelector('td:nth-child(2)').textContent
+
+          let isJobTitleFound = false
+
+          for (const employeeRow of employeeRows) {
+            const employeeJobTitle = employeeRow.querySelector('td:nth-child(3)').textContent
+
+            if (employeeJobTitle === jobTitle) {
+              isJobTitleFound = true
+              break
+            }
+          }
+
+          if (isJobTitleFound) {
+            console.log(`Cannot edit the row in the 'job' table. Matching job found in 'employee' table: ${jobTitle}`)
+            return
+          }
+        }
+
         const dataEditValue = event.target.getAttribute('data-edit')
 
         table.classList.remove('active-table')
@@ -105,6 +171,28 @@ function openEditForm(tableID, formID, btnBackID, callback) {
   if (tableID === '#employee') {
     table.addEventListener('click', event => {
       if (event.target && event.target.classList.contains('fa-pen-to-square')) {
+        const row = event.target.closest('tr')
+        const contractTable = document.querySelector('#contract')
+        const contractRows = contractTable.querySelectorAll('tbody tr')
+
+        const fioEmployee = row.querySelector('td:nth-child(2)').textContent
+
+        let isFioEmployeeFound = false
+
+        for (const contractRow of contractRows) {
+          const contractEmployeeFio = contractRow.querySelector('td:nth-child(5)').textContent
+
+          if (contractEmployeeFio === fioEmployee) {
+            isFioEmployeeFound = true
+            break
+          }
+        }
+
+        if (isFioEmployeeFound) {
+          console.log(`Cannot edit the row in the 'employee' table. Matching employee found in 'contract' table: ${fioEmployee}`)
+          return
+        }
+
         const dataEditValue = event.target.getAttribute('data-edit')
 
         const tableRows = document.querySelectorAll('#job tbody tr')

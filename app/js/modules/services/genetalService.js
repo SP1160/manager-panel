@@ -66,6 +66,91 @@ async function deleteRow(tableID, sectionName) {
       if (event.target.getAttribute('data-delete')) {
         const row = event.target.closest('tr')
         const rowID = row.getAttribute('id')
+        const contractTable = document.querySelector('#contract')
+        const contractRows = contractTable.querySelectorAll('tbody tr')
+
+        if (tableID === 'client') {
+          const fioClient = row.querySelector('td:nth-child(2)').textContent
+
+          let isFioClineFound = false
+
+          for (const contractRow of contractRows) {
+            const contractClientFio = contractRow.querySelector('td:nth-child(6)').textContent
+
+            if (contractClientFio === fioClient) {
+              isFioClineFound = true
+              break
+            }
+          }
+
+          if (isFioClineFound) {
+            console.log(`Cannot delete the row in the 'client' table. Matching FIO found in 'contract' table: ${fioClient}`)
+            return
+          }
+        }
+
+        if (tableID === 'car') {
+          const carNumber = row.querySelector('td:nth-child(3)').textContent
+
+          let isNumberFound = false
+
+          for (const contractRow of contractRows) {
+            const contractCarNumber = contractRow.querySelector('td:nth-child(8)').textContent
+
+            if (contractCarNumber === carNumber) {
+              isNumberFound = true
+              break
+            }
+          }
+
+          if (isNumberFound) {
+            console.log(`Cannot delete the row in the 'car' table. Matching car number found in 'contract' table: ${carNumber}`)
+            return
+          }
+        }
+
+        if (tableID === 'employee') {
+          const fioEmployee = row.querySelector('td:nth-child(2)').textContent
+
+          let isFioEmployeeFound = false
+
+          for (const contractRow of contractRows) {
+            const contractEmployeeFio = contractRow.querySelector('td:nth-child(5)').textContent
+
+            if (contractEmployeeFio === fioEmployee) {
+              isFioEmployeeFound = true
+              break
+            }
+          }
+
+          if (isFioEmployeeFound) {
+            console.log(`Cannot delete the row in the 'employee' table. Matching employee found in 'contract' table: ${fioEmployee}`)
+            return
+          }
+        }
+
+        if (tableID === 'job') {
+          const employeeTable = document.querySelector('#employee')
+          const employeeRows = employeeTable.querySelectorAll('tbody tr')
+          const jobTitle = row.querySelector('td:nth-child(2)').textContent
+
+          let isJobTitleFound = false
+
+          for (const employeeRow of employeeRows) {
+            const employeeJobTitle = employeeRow.querySelector('td:nth-child(3)').textContent
+
+            if (employeeJobTitle === jobTitle) {
+              isJobTitleFound = true
+              break
+            }
+          }
+
+          if (isJobTitleFound) {
+            console.log(`Cannot delete the row in the 'job' table. Matching job found in 'employee' table: ${jobTitle}`)
+            return
+          }
+        }
+
         row.remove()
         await axios.delete(`http://localhost:3000/${sectionName}/${rowID}`)
       }

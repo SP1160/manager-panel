@@ -84,19 +84,19 @@
       "date": "25.05.2023",
       "returnDate": "26.05.2023",
       "pledge": 5000,
-      "fioEmployee": "Сергеев Арсений Фролович",
+      "fioEmployee": "Сергеев Арсений Антонович",
       "fioClient": "Благушин Дмитрий Владимирович",
-      "carBrand": "BMW M3",
-      "carNumber": "К888ОТ",
-      "price": 15000
+      "carBrand": "Gold RS",
+      "carNumber": "О888ОО",
+      "price": 9200
     },
     {
       "id": 5,
       "date": "01.06.2023",
       "returnDate": "02.06.2023",
       "pledge": 3500,
-      "fioEmployee": "Есин Кирилл Михайлович",
-      "fioClient": "Новожилов Кирилл Алексеевич",
+      "fioEmployee": "Лазарев Мирон Иванович",
+      "fioClient": "Новожилов Кирилл Иванович",
       "carBrand": "Ford RS",
       "carNumber": "А100КК",
       "price": 10000
