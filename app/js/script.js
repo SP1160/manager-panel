@@ -1,4 +1,4 @@
-import { getAndShowInfo, deleteRow } from "./modules/services/genetalService.js"
+import { getAndShowInfo, deleteRow } from "./modules/services/generalServices.js"
 import { openActiveTable } from "./modules/changeTableState.js"
 import { changeToDarkMode, changeToLightMode, switchMode } from "./modules/changeThemeMode.js"
 import { toggleSidebar } from "./modules/switchingSidebar.js"
