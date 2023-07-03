@@ -4,7 +4,7 @@ The application is a site - a manager's panel. It consists of a menu and 5 table
 
 ## ER model of the subject area
 
-![er-diagramma]([https://github.com/SP1160/manager-panel/er-diagramma-car-rent.jpg](https://github.com/SP1160/manager-panel/blob/master/er-diagramma-car-rent.jpg)
+![er-diagramma](https://github.com/SP1160/manager-panel/blob/master/er-diagramma-car-rent.jpg)
 
 ## Tech Stack
 
